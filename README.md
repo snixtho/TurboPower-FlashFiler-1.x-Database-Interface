@@ -201,7 +201,7 @@ namespace flashfiler1_reading_the_db_csharp {
                 return;
             }
 			
-			Console.WriteLine("There are " + FF1TableRecordCount() + " recorded shot(s) in this table.");
+	    Console.WriteLine("There are " + FF1TableRecordCount() + " recorded shot(s) in this table.");
 
             FF1TableFirst();
 
