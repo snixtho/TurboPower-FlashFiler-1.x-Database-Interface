@@ -59,24 +59,34 @@ bool FF1IsFileBLOB(int fieldNo, char* buffer);
 ```cpp
 // read boolean
 int FF1TableFieldValueBool(bool* value, int fieldNo);
+
 // read short
 int FF1TableFieldValueShort(short* value, int fieldNo);
+
 // read unsigned short
 int FF1TableFieldValueUShort(unsigned short* value, int fieldNo);
+
 // read integer
 int FF1TableFieldValueInt(int* value, int fieldNo);
+
 // read unsigned integer
 int FF1TableFieldValueUInt(unsigned int* value, int fieldNo);
+
 // read long
 int FF1TableFieldValueLong(long* value, int fieldNo);
+
 // read unsigned long
 int FF1TableFieldValueULong(unsigned long* value, int fieldNo);
+
 // read float
 int FF1TableFieldValueFloat(float* value, int fieldNo);
+
 // read double
 int FF1TableFieldValueDouble(double* value, int fieldNo);
+
 // read char/byte
 int FF1TableFieldValuePChar(char* value, int fieldNo);
+
 // read string
 int FF1TableFieldValuePPChar(char** value, int fieldNo);
 ```
