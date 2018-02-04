@@ -48,6 +48,7 @@ bool FF1TableEOF();
 bool FF1IsFileBLOB(int fieldNo, char* buffer);
 ```
 | Parameter | Description|
+|-|-|
 | fieldNo | The index of the field to read. |
 | buffer | If the current field is a BLOB, the file name of this BLOB is written to this parameter. |
 
