@@ -52,6 +52,9 @@ bool FF1IsFileBLOB(int fieldNo, char* buffer);
 | fieldNo | The index of the field to read. |
 | buffer | If the current field is a BLOB, the file name of this BLOB is written to this parameter. |
 
+| Returns | True if field is a BLOB, false if not. |
+|-|-|
+
 ## Read the value of a field in the current table.
 ```cpp
 // read boolean
