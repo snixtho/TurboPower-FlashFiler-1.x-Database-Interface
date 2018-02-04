@@ -194,7 +194,7 @@ namespace flashfiler1_reading_the_db_csharp {
 
         static void Main(string[] args) {
 
-            FF1DirOpen(@"some_directory");
+            FF1DirOpen(@"TargetSystemDB");
 
             if (FF1TableOpen("SkuddData") != 0) {
                 Console.WriteLine("Failed to open table.");
