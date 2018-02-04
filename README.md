@@ -101,7 +101,7 @@ int FF1TableFieldValuePPChar(char** value, int fieldNo);
 | value | The value of the field is written to this parameter. |
 | fieldNo | The index of the field to read from. |
 
-| Returns | - |
+| Returns | Unknown at this point. |
 |-|-|
 
 # Credits
