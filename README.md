@@ -17,6 +17,8 @@ void FF1DirOpen(char* directory);
 ```cpp
 int FF1TableOpen(char* tableName);
 ```
+| Returns | Non-zero if the table failed to open. |
+|-|-|
 
 ## Close a table
 ```cpp
@@ -27,6 +29,8 @@ void FF1TableClose();
 ```cpp
 int FF1TableRecordCount();
 ```
+| Returns | Number of records in the table. |
+|-|-|
 
 ## Go to the first record in the current table.
 ```cpp
@@ -42,6 +46,8 @@ void FF1TableNext();
 ```cpp
 bool FF1TableEOF();
 ```
+| Returns | True if the program has reached the end of the table, false if not. |
+|-|-|
 
 ## Check if a field in the current table is a BLOB.
 ```cpp
@@ -90,6 +96,13 @@ int FF1TableFieldValuePChar(char* value, int fieldNo);
 // read string
 int FF1TableFieldValuePPChar(char** value, int fieldNo);
 ```
+| Parameter | Description|
+|-|-|
+| value | The value of the field is written to this parameter. |
+| fieldNo | The index of the field to read from. |
+
+| Returns | - |
+|-|-|
 
 # Credits
 - [snixtho](https://github.com/snixtho) (me)
