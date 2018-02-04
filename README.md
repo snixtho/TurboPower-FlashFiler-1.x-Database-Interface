@@ -6,6 +6,13 @@ You have the converter which you can use to convert ff1 tables to ff2 tables, an
 The interface is tested and should work both in C/C++ and C#. Look below for usage.
 
 # Usage/Documentation
+This interface is very much like the original one, however some functions are changed a bit mainly due to compatability reasons.
+
+## Open a database
+```cpp
+FF1TableOpen(char* directory);
+```
+
 
 # Credits
 - [snixtho](https://github.com/snixtho) (me)
