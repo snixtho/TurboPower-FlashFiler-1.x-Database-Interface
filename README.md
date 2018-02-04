@@ -206,9 +206,12 @@ namespace flashfiler1_reading_the_db_csharp {
 
             int c = 0;
             while (!FF1TableEOF()) {
+	    	// Note here that reading strings require the use of IntPtr and marshalling.
                 IntPtr scoreP = IntPtr.Zero;
                 FF1TableFieldValuePPChar(ref scoreP, 3);
 
+		// The database works with ASCII/ANSI charset. Also you should trim the string due
+		// to adding of some uneccessary data.
                 string score = Marshal.PtrToStringAnsi(scoreP).Trim();
 
                 if (score == "*.9") {
