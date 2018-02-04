@@ -10,9 +10,69 @@ This interface is very much like the original one, however some functions are ch
 
 ## Open a database
 ```cpp
-FF1TableOpen(char* directory);
+void FF1DirOpen(char* directory);
 ```
 
+## Open a table
+```cpp
+int FF1TableOpen(char* tableName);
+```
+
+## Close a table
+```cpp
+void FF1TableClose();
+```
+
+## Get number of records in the current table.
+```cpp
+int FF1TableRecordCount();
+```
+
+## Go to the first record in the current table.
+```cpp
+void FF1TableFirst();
+```
+
+## Go to the next record in the current table.
+```cpp
+void FF1TableNext();
+```
+
+## Check whether we are at the end of the table.
+```cpp
+bool FF1TableEOF();
+```
+
+## Check if a field in the current table is a BLOB.
+```cpp
+bool FF1IsFileBLOB(int fieldNo, char* buffer);
+```
+
+## Read the value of a field in the current table.
+```cpp
+// read boolean
+int FF1TableFieldValueBool(bool* value, int fieldNo);
+// read short
+int FF1TableFieldValueShort(short* value, int fieldNo);
+// read unsigned short
+int FF1TableFieldValueUShort(unsigned short* value, int fieldNo);
+// read integer
+int FF1TableFieldValueInt(int* value, int fieldNo);
+// read unsigned integer
+int FF1TableFieldValueUInt(unsigned int* value, int fieldNo);
+// read long
+int FF1TableFieldValueLong(long* value, int fieldNo);
+// read unsigned long
+int FF1TableFieldValueULong(unsigned long* value, int fieldNo);
+// read float
+int FF1TableFieldValueFloat(float* value, int fieldNo);
+// read double
+int FF1TableFieldValueDouble(double* value, int fieldNo);
+// read char/byte
+int FF1TableFieldValuePChar(char* value, int fieldNo);
+// read string
+int FF1TableFieldValuePPChar(char** value, int fieldNo);
+```
 
 # Credits
 - [snixtho](https://github.com/snixtho) (me)
