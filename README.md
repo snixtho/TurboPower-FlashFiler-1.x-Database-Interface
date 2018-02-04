@@ -104,6 +104,130 @@ int FF1TableFieldValuePPChar(char** value, int fieldNo);
 | Returns | Unknown at this point. |
 |-|-|
 
+# Examples
+The process of opening a database table and reading from it is pretty much identical to using the original interface.
+
+## C++ Example
+Make sure you link the dll file first before compiling obviously.
+The following example retrieves a string from a specific field in a database table.
+```cpp
+#include <iostream>
+#include <Windows.h>
+
+typedef char*(CALLBACK* GetStrFunc)();
+
+extern "C" void FF1TableFirst();
+extern "C" int FF1TableFieldValuePPChar(char** value, int fieldNo);
+extern "C" void FF1DirOpen(char* directory);
+extern "C" int FF1TableOpen(char* tableName);
+extern "C" void FF1TableClose();
+extern "C" bool FF1TableEOF();
+
+int main() {
+	using namespace std;
+
+	FF1DirOpen("databse_directory");
+	
+	if (FF1TableOpen("TableName") != 0) {
+		cout << "Failed to open table" << endl;
+		return 0;
+	}
+
+	FF1TableFirst();
+
+	if (FF1TableEOF()) {
+		cout << "No records in this table." << endl;
+	}
+
+	char* str;
+	FF1TableFieldValuePPChar(&str, 3); // get a string from field at index 3.
+
+	cout << "Retrieved string: " << str << endl;
+
+	FF1TableClose();
+
+	return 0;
+}
+```
+
+## C# Example
+The following C# program reads from a database made by an electronic shooting target system. It iterates through all the records in the table the contains all recorded shots and finds the number of shots with the highest score.
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace flashfiler1_reading_the_db_csharp {
+    class Program {
+
+        [DllImport("FF1Interface.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void FF1TableFirst();
+
+        [DllImport("FF1Interface.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void FF1TableNext();
+
+        [DllImport("FF1Interface.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int FF1TableFieldValuePPChar(ref IntPtr value, int fieldNo);
+        // Opens a FF1 database.
+        [DllImport("FF1Interface.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void FF1DirOpen([MarshalAs(UnmanagedType.LPStr)]string directory);
+
+        // Opens a FF1 table.
+        [DllImport("FF1Interface.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int FF1TableOpen([MarshalAs(UnmanagedType.LPStr)]string tableName);
+
+        // Closes the current FF1 table.
+        [DllImport("FF1Interface.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void FF1TableClose();
+
+        // Checks if we have reached the end of the current FF1 table.
+        [DllImport("FF1Interface.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool FF1TableEOF();
+
+        // Get the number of records in the current FF1 table.
+        [DllImport("FF1Interface.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int FF1TableRecordCount();
+
+        static void Main(string[] args) {
+
+            FF1DirOpen(@"some_directory");
+
+            if (FF1TableOpen("SkuddData") != 0) {
+                Console.WriteLine("Failed to open table.");
+                return;
+            }
+			
+			Console.WriteLine("There are " + FF1TableRecordCount() + " recorded shot(s) in this table.");
+
+            FF1TableFirst();
+
+            int c = 0;
+            while (!FF1TableEOF()) {
+                IntPtr scoreP = IntPtr.Zero;
+                FF1TableFieldValuePPChar(ref scoreP, 3);
+
+                string score = Marshal.PtrToStringAnsi(scoreP).Trim();
+
+                if (score == "*.9") {
+                    c++;
+                }
+
+                FF1TableNext();
+            }
+
+            Console.WriteLine("There are " + c + " shot(s) that have the highest score of *.9");
+            
+            FF1TableClose();
+        }
+    }
+}
+
+```
+
 # Credits
 - [snixtho](https://github.com/snixtho) (me)
 - [TNTworks](https://github.com/TNTworks)
