@@ -193,7 +193,6 @@ namespace flashfiler1_reading_the_db_csharp {
         public static extern int FF1TableRecordCount();
 
         static void Main(string[] args) {
-
             FF1DirOpen(@"TargetSystemDB");
 
             if (FF1TableOpen("SkuddData") != 0) {
